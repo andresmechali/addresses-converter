@@ -3,9 +3,11 @@ import { Keyring } from "@polkadot/keyring";
 import yargs from "yargs";
 import { Signale } from "signale";
 
-const encodings: Record<"polkadot" | "kusama", number> = {
+const encodings: Record<"polkadot" | "kusama" | "ed" | "ed25519", number> = {
   polkadot: 0,
   kusama: 2,
+  ed: 42,
+  ed25519: 42,
 };
 
 // Custom logger
@@ -42,8 +44,8 @@ async function run() {
     input: { type: "string", default: "input.txt" },
     output: { type: "string", default: "output.txt" },
     format: {
-      choices: ["kusama", "polkadot"] as const,
-      default: "polkadot" as const,
+      choices: ["kusama", "polkadot", "ed", "ed25519"] as const,
+      default: "ed25519" as const,
     },
   }).argv;
 
